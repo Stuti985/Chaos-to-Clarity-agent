@@ -48,7 +48,7 @@ Responsibility: Convert informal/chaotic input into a compact, structured repres
 Example Input → Output (tested):
 - Input: bro I’m tired but also excited but idk what to do with my life lol
 - Output JSON:
-- 
+ 
 {
   "restatement": "User feels conflicted: low energy yet anticipatory and uncertain about life direction.",
   "emotions": ["tired","excited","uncertain"],
@@ -64,6 +64,7 @@ Maintain session state as simple key-value variables:
 - last_restements: [ ... ]
 - last_themes: [ ... ]
 - user_preferences: { tone: "formal|casual", depth: "brief|detailed" }
+
 When generating suggestions, compare new themes to last_themes and avoid repeating identical suggestions in consecutive interactions.
 If user consents, persist preferences across sessions.
 
@@ -161,18 +162,23 @@ When the Input Understanding prompt was unconstrained, the model sometimes simpl
 SECTION 6: REFLECTION
 
 6.1. What was the hardest part of this assignment?
+
 The hardest part was decomposing the agent into distinct, non-overlapping prompt responsibilities while ensuring information flows precisely between modules. Early iterations showed leakage: the generator would re-infer things already extracted by the Input Understanding layer. Designing machine-parsable outputs (JSON) and enforcing strict format constraints solved most leakage.
 
 6.2. What part did you enjoy the most?
+
 I enjoyed iterating prompts and watching how small structural constraints improved result quality dramatically. Constraining outputs to specific keys and short lengths produced much more reliable, testable behaviors. Tuning tone to be professional yet empathetic was satisfying.
 
 6.3. If given more time, what would you improve or add?
+
 I would implement persistent, consented user memory and a lightweight preference UI so the agent tailors depth and tone over multiple sessions. I would also add a small supervised classifier for intent to reduce ambiguity and integrate a feedback loop where users rate helpfulness to refine suggestions.
 
 6.4. What did you learn about ChatGPT or prompt design?
+
 Clear separation of concerns and machine-readable formats (JSON) dramatically reduce unintended behavior. Short, explicit instructions (e.g., “respond only with JSON”) are more reliable than broad directives. Iteration and small tests are essential to validate assumptions.
 
 6.5. Did you ever feel stuck? How did you handle it?
+
 Yes — the model initially echoed inputs or produced overlong replies. I handled this by constraining outputs, adding an ambiguity field, and creating a planner that enforced intent branching. Testing edge inputs and building fallback clarifying questions resolved most stuck states.
 
 SECTION 7: HACK VALUE (Optional)
