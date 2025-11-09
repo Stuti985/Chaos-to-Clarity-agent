@@ -164,7 +164,7 @@ You are unsure and seeking direction, but the specifics are unclear.
 
 Test 3 — Empty input / noise
 - Input: `` (empty)
-- Agent Output: 
+- Agent Output:
 I didn’t catch any content. Would you like a quick reflection prompt to get started? (Yes / No)
 
 Explanation of the earlier “Raw Input == Raw Output” issue:
@@ -193,7 +193,7 @@ Clear separation of concerns and machine-readable formats (JSON) dramatically re
 
 Yes — the model initially echoed inputs or produced overlong replies. I handled this by constraining outputs, adding an ambiguity field, and creating a planner that enforced intent branching. Testing edge inputs and building fallback clarifying questions resolved most stuck states.
 
-SECTION 7: HACK VALUE 
+SECTION 7: HACK VALUE
 - Implemented a simple short-term memory simulation (last_themes, last_restements) to avoid immediate repetition and preserve helpful continuity.
 - Designed explicit planner branching (clarify vs. suggest) to handle low-signal inputs gracefully.
 - Included a compact integration pseudocode (below) to show how prompts chain and where system messages belong.
