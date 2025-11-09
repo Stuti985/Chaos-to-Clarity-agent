@@ -106,14 +106,13 @@ SECTION 4: CHATGPT EXPLORATION LOG
 
 Minimum three meaningful iterations. Documented as prompt variant → result → change → rationale.
 
-  Attempt#   | Prompt Variant / Stage Tested              | What Happened                                       | What You Changed                                        | Why                
-      1      | Bare Input Understanding                   | Model often echoed input verbatim or                | Constrained output: require JSON with                   | Prevents echoing and enforces machine-                 (simple restate)                             produced long paragraphs                              specific keys                                             readable structure
-      2      | Added emotion extraction +                 | Emotions detected but planner produced              | Added Task Planner with explicit intent                 | Keeps outputs concise and actionable
-               ambiguity field                              long, unfocused suggestions                           classification and max length constraints
-      3      | Introduced State Tracker                   | Repetition reduced but sometimes                    | Changed repetition policy: avoid identical              | Preserve helpful continuity while 
-               (last_themes)                                removed valid continuity                              suggestions only; allow thematic continuity               avoiding boring repeats
-      4      | Output Generator max 120                   | Output clarity improved; tone consistent            | Tweak phrasing templates for empathy + brevity          | Final polish for professional tone                     words and markdown requirement                     
-      5      | Edge test with empty or                    | Model struggled to infer intent                     | Add fallback: when ambiguity present → one              | Ensures graceful handling of low-signal                single word input                                                                                  clarifying question                                       inputs
+| Attempt | Prompt Variant / Stage Tested | What Happened | What You Changed | Why You Changed It |
+|--------|-------------------------------|----------------|------------------|---------------------|
+| **1** | Basic Input Understanding (simple restatement) | Model either echoed input verbatim or produced long, unstructured paragraphs. | Forced a strict JSON schema with keys: meaning, emotions, themes, ambiguities. | To stop uncontrolled output and create a machine-readable foundation for the agent. |
+| **2** | Added emotion extraction + ambiguity detection | Emotions were captured correctly, but planner generated long, unfocused suggestions. | Added Task Planner with intent classification (clarify/guide) + length limits. | To keep the output concise, intentional, and aligned with the agent’s workflow. |
+| **3** | Introduced State Tracker (tracking last themes) | Repetition reduced, but sometimes removed useful context. | Updated rules: avoid identical repeats; allow useful continuity. | To balance memory with freshness in responses. |
+| **4** | Output Generator with word limit + markdown | Output was clear but lacked consistent emotional framing. | Refined phrasing templates for empathy + professional tone. | To improve tone consistency and readability. |
+| **5** | Edge case tests (empty / one word input) | Model struggled to infer intent. | Added fallback rule: if ambiguity high → ask one clarifying question. | Ensures graceful handling of vague inputs. |
 
 SECTION 5: OUTPUT TESTS (examples)
 
