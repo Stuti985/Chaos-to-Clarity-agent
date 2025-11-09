@@ -2,20 +2,27 @@
 An AI system that transforms unstructured user input into a clean, structured, and actionable plan using reasoning, memory, and iterative refinement.
 
 SECTION 1: BASIC DETAILS
+
 Name: Stuti Tripathi
+
 AI Agent Title / Use Case: Chaos-to-Clarity Agent — converts messy, mixed, or emotionally-charged user inputs into a concise, structured interpretation and next-step suggestions.
 
 SECTION 2: PROBLEM FRAMING
+
 2.1. What problem does your AI Agent solve?
+
 Many users express thoughts that are unstructured, emotionally mixed, or overwhelmed (“I’m tired but excited and I don’t know what to do”). The agent’s role is to convert such chaotic input into clear, bite-sized meaning: a distilled interpretation, detected emotions, core needs, and practical next steps.
 
 2.2. Why is this agent useful?
+
 It reduces cognitive load, improves clarity of communication, and helps users move from confusion to actionable perspective quickly. It is useful for journaling, prepping for conversations, clarifying goals, or composing clearer messages.
 
 2.3. Who is the target user?
+
 Students, early professionals, managers, or anyone who frequently writes informal, mixed-emotion messages and wants a fast structured interpretation to act on or reflect with.
 
 2.4. What not to include?
+
 - Not a replacement for professional therapy or medical advice.
 - Will not make high-stakes decisions for users (e.g., financial/legal decisions).
 - Will not store sensitive personal identifiers beyond session unless explicit consent & secure storage are implemented (out of scope for this assignment).
@@ -148,6 +155,7 @@ Test 3 — Empty input / noise
 I didn’t catch any content. Would you like a quick reflection prompt to get started? (Yes / No)
 
 Explanation of the earlier “Raw Input == Raw Output” issue:
+
 When the Input Understanding prompt was unconstrained, the model sometimes simply echoed the user text (mirror response) rather than extracting structure. Requiring a JSON response with explicit keys (restatement, emotions, themes, ambiguities) prevents raw echoing and ensures downstream modules receive structured data.
 
 SECTION 6: REFLECTION
