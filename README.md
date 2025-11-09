@@ -21,9 +21,11 @@ Students, early professionals, managers, or anyone who frequently writes informa
 - Will not store sensitive personal identifiers beyond session unless explicit consent & secure storage are implemented (out of scope for this assignment).
 
 SECTION 3: 4-LAYER PROMPT DESIGN
+
 Design principle: each prompt performs one responsibility only and returns a machine-parsable response (JSON or clearly delimited output) to avoid ambiguity.
 
 3.1 INPUT UNDERSTANDING
+
 Prompt (system / user prompt sent to LLM):
 
 You are an Input Understanding module. Given the user's raw text, extract:
@@ -39,6 +41,7 @@ Responsibility: Convert informal/chaotic input into a compact, structured repres
 Example Input → Output (tested):
 - Input: bro I’m tired but also excited but idk what to do with my life lol
 - Output JSON:
+- 
 {
   "restatement": "User feels conflicted: low energy yet anticipatory and uncertain about life direction.",
   "emotions": ["tired","excited","uncertain"],
@@ -47,7 +50,9 @@ Example Input → Output (tested):
 }
 
 3.2 STATE TRACKER
+
 Prompt / Logic (internal module / system message):
+
 Maintain session state as simple key-value variables:
 - last_restements: [ ... ]
 - last_themes: [ ... ]
@@ -59,6 +64,7 @@ If user consents, persist preferences across sessions.
 - Implementation note: For a prototype, store state in server memory (or browser localStorage) with session ID; in production use secure, consented storage.
 
 3.3 TASK PLANNER
+
 Prompt (instruction to internal planner logic or explicit LLM step):
 
 Plan these internal steps:
@@ -76,6 +82,7 @@ Return a structured plan object.
 - Chaining/Branching: Uses a small chain: parse → intent → either clarify (branch) or produce recommended actions.
 
 3.4 OUTPUT GENERATOR
+
 Prompt (final content generator):
 
 Using the planner output, produce a final response with three sections:
@@ -88,6 +95,7 @@ Respond in English.
 - Formatting / Tone: Crisp, professional, empathetic. Markdown with bullets and small sentences to maximise scannability. Example output shown in Section 5.
 
 SECTION 4: CHATGPT EXPLORATION LOG
+
 Minimum three meaningful iterations. Documented as prompt variant → result → change → rationale.
 
   Attempt#   | Prompt Variant / Stage Tested              | What Happened                                       | What You Changed                                        | Why                
@@ -100,6 +108,7 @@ Minimum three meaningful iterations. Documented as prompt variant → result →
       5      | Edge test with empty or                    | Model struggled to infer intent                     | Add fallback: when ambiguity present → one              | Ensures graceful handling of low-signal                single word input                                                                                  clarifying question                                       inputs
 
 SECTION 5: OUTPUT TESTS (examples)
+
 Test 1 — Normal mixed-emotion input
 
 - Input: bro I’m tired but also excited but idk what to do with my life lol
