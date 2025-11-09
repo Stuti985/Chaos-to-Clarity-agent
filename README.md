@@ -1,4 +1,4 @@
-# Chaos-to-Clarity-agent
+# Chaos-to-Clarity Agent
 An AI system that transforms unstructured user input into a clean, structured, and actionable plan using reasoning, memory, and iterative refinement.
 
 SECTION 1: BASIC DETAILS
