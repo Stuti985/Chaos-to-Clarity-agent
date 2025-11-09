@@ -50,10 +50,15 @@ Example Input → Output (tested):
 - Output JSON:
  
 {
+
   "restatement": "User feels conflicted: low energy yet anticipatory and uncertain about life direction.",
+  
   "emotions": ["tired","excited","uncertain"],
+  
   "themes": ["life direction","energy","motivation"],
+  
   "ambiguities": "Unclear whether the user wants advice, reflection prompts, or concrete next steps."
+  
 }
 
 3.2 STATE TRACKER
